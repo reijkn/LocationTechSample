@@ -36,11 +36,14 @@
 
             map.addLayer(backgroundLayer);
 
-            // ピンを地図に追加
-            const marker = L.marker([33, 129.5]);
-            marker.bindPopup('平面直角座標1系原点');
-            map.addLayer(marker);
-
+            // GeoJSONレイヤーを作成
+            fetch('./P29-21_10.geojson')
+                .then((res) => res.json())
+                .then((json) => {
+                    L.geoJSON(json)
+                        .bindPopup((layer) => layer.feature.properties.P29_004)
+                        .addTo(map);
+                });
         </script>
     </body>
 </html>
