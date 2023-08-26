@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>5.地図上に図形を表示する</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""
+        />
+        <script
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""
+        ></script>
+    </head>
+    <body>
+        <div id="map" style="height: 80vh"></div>
+        <script>
+            const map = L.map('map', {
+                center: [35.3627808, 138.7307908],
+                zoom: 14,
+            });
+            const backgroundLayer = L.tileLayer(
+                'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', // 地理院タイル空中写真
+                {
+                    maxZoom: 17,
+                    attribution:
+                        '<a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>',
+                },
+            );
+            map.addLayer(backgroundLayer);
+
+        </script>
+    </body>
+</html>
