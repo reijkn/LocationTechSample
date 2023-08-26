@@ -35,6 +35,12 @@
             );
 
             map.addLayer(backgroundLayer);
+
+            // ピンを地図に追加
+            const marker = L.marker([33, 129.5]);
+            marker.bindPopup('平面直角座標1系原点');
+            map.addLayer(marker);
+
         </script>
     </body>
 </html>
