@@ -54,6 +54,18 @@
                     ],
                 },
             });
+
+            // クリック地点のgeometryの情報取得
+            map.on('click', (e) => {
+                // alert('cli');
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ['admin-layer'],
+                });
+                if (features.length === 0) return;
+
+                const feature = features[0];
+                alert(`${feature.properties.N03_007}: ${feature.properties.N03_001}${feature.properties.N03_004}`,);
+            });
         </script>
     </body>
 </html>
