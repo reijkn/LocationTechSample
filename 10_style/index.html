@@ -114,6 +114,35 @@
                                 ],
                             },
                         },
+                        {
+                            id: 'school-circle-layer',
+                            source: 'school',
+                            type: 'circle',
+                            minzoom: 8,
+                            paint: {
+                                'circle-color': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['get', 'P29_003'],
+                                    16001, '#f00',
+                                    16002, '#0f0',
+                                    16003, '#0f0',
+                                    16004, '#00f',
+                                    16005, 'orange',
+                                ],
+                                'circle-opacity': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    8,
+                                    0,
+                                    9,
+                                    0.1,
+                                    14,
+                                    1,
+                                ]
+                            },
+                        },
                     ],
                 },
             });
