@@ -27,6 +27,12 @@
                             maxzoom: 18,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                         },
+                        admin: {
+                            type: 'vector',
+                            tiles: ['http://127.0.0.1:3000/location-tech-sample-v1/00_data/tiles/{z}/{x}/{y}.pbf'],
+                            maxzoom: 8,
+                            attribution: '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html">国土数値情報 - 行政区域データ</a>',
+                        },
                     },
                     layers: [
                         {
@@ -51,6 +57,35 @@
                                     14,
                                     0.7,
                                 ],
+                            },
+                        },
+                        {
+                            // 遠いときは緑色で行政区域が、近づくと色は薄くなる（そしてosmが出る）
+                            id: 'admin-layer',
+                            source: 'admin',
+                            'source-layer': 'admin',
+                            type: 'fill',
+                            paint: {
+                                'fill-color': '#6a3',
+                                'fill-opacity': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    10,
+                                    0.7,
+                                    14,
+                                    0.3,
+                                ],
+                            },
+                        },
+                        {
+                            id: 'admin-outline-layer',
+                            source: 'admin',
+                            'source-layer': 'admin',
+                            type: 'line',
+                            paint: {
+                                'line-color': '#373',
+                                'line-width': 3,
                             },
                         },
                     ],
