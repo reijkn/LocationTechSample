@@ -33,6 +33,11 @@
                             maxzoom: 8,
                             attribution: '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html">国土数値情報 - 行政区域データ</a>',
                         },
+                        school: {
+                            type: 'geojson',
+                            data: '../00_data/P29-21.geojson',
+                            attribution: '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html">国土数値情報 - 学校データ</a>',
+                        }
                     },
                     layers: [
                         {
@@ -86,6 +91,27 @@
                             paint: {
                                 'line-color': '#373',
                                 'line-width': 3,
+                            },
+                        },
+                        {
+                            id: 'school-heatmap-layer',
+                            source: 'school',
+                            type: 'heatmap',
+                            maxzoom: 12,
+                            paint: {
+                                'heatmap-weight': 0.01,
+                                'heatmap-opacity': 0.7,
+                                'heatmap-color': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['heatmap-density'],
+                                    0,
+                                    'rgba(0, 0, 0, 0)',
+                                    0.5,
+                                    'rgba(255, 200, 0, 1)',
+                                    1.0,
+                                    'rgba(255, 240, 200, 1)',
+                                ],
                             },
                         },
                     ],
