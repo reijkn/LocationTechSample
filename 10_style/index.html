@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>6-2.MapLibre GL JSで地図上に多くの図形を表示する</title>
+        <!-- MapLibre GL JSを読み込み -->
+        <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+        <link
+            href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- この div に地図が表示される -->
+        <div id="map" style="height: 80vh"></div>
+        <script>
+            const map = new maplibregl.Map({
+                container: 'map',
+                center: [137.1, 36.5],
+                zoom: 4,
+                style: {
+                    version: 8,
+                    sources: {}, // 地図上で使用されうるデータ
+                    layers: [], // sourceをどのように描画するか規定
+                },
+            });
+        </script>
+    </body>
+</html>
