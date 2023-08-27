@@ -16,11 +16,44 @@
             const map = new maplibregl.Map({
                 container: 'map',
                 center: [137.1, 36.5],
-                zoom: 4,
+                zoom: 12, // このくらいならぼんやり表示される
                 style: {
                     version: 8,
-                    sources: {}, // 地図上で使用されうるデータ
-                    layers: [], // sourceをどのように描画するか規定
+                    sources: {
+                        osm: {
+                            type: 'raster',
+                            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png',],
+                            tileSize: 256, // タイルの解像度, デフォルトは512
+                            maxzoom: 18,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        },
+                    },
+                    layers: [
+                        {
+                            id: 'background',
+                            type: 'background',
+                            paint: {
+                                'background-color': '#555',
+                            },
+                        },
+                        {
+                            id: 'osm-layer',
+                            source: 'osm',
+                            type: 'raster',
+                            minzoom: 10, // これより遠ざかるとグレー表示
+                            paint: {
+                                'raster-opacity':[
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    10,
+                                    0,
+                                    14,
+                                    0.7,
+                                ],
+                            },
+                        },
+                    ],
                 },
             });
         </script>
