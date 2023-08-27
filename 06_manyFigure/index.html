@@ -75,7 +75,39 @@
                         .addTo(map);
                     // レイヤ一覧に追加
                     layersControl.addOverlay(polygon, 'DID');
-                })
+                });
+
+            // 色用の辞書定義
+            const colorDict = {
+                1: 'green',
+                2: 'blue',
+                3: 'red',
+                4: 'orange',
+                5: 'purple',
+            };
+
+            // 
+            const weightDict = {
+                1: 10,
+                2: 7,
+                3: 4,
+                4: 4,
+                5: 4,
+            };
+
+            fetch('./N02-22_RailroadSection.geojson')
+                .then((res) => res.json())
+                .then((json) => {
+                    const line = L.geoJSON(json, {
+                        style: (feature) => ({
+                            weight: weightDict[feature.properties.N02_002],
+                            color: colorDict[feature.properties.N02_002],
+                        }),
+                    })
+                        .bindPopup((layer) => layer.feature.properties.N02_004 + '<br />' + layer.feature.properties.N02_003,)
+                        .addTo(map);
+                    layersControl.addOverlay(line, 'railroad');
+                });
         </script>
     </body>
 </html>
