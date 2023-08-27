@@ -27,12 +27,36 @@
                             maxzoom: 18,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                         },
+                        polygon: {
+                            type: 'geojson',
+                            data: './A16-15_00_DID.geojson',
+                            attribution: '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A16-v2_3.html">国土数値情報 - 人口集中地区データ</a>'
+                        },
+                        line: {
+                            type: 'geojson',
+                            data: './N02-22_RailroadSection.geojson',
+                            attribution: '<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-v3_0.html">国土数値情報 - 鉄道データ</a>'
+                        }
                     },
                     layers: [
                         {
                             id: 'osm-layer',
                             source: 'osm',
                             type: 'raster',
+                        },
+                        {
+                            id: 'polygon-layer',
+                            source: 'polygon',
+                            type: 'fill',
+                        },
+                        {
+                            id: 'line-layer',
+                            source: 'line',
+                            type: 'line',
+                            paint: {
+                                'line-color': 'green',
+                                'line-width': 1,
+                            }
                         },
                     ],
                 },
