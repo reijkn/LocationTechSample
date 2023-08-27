@@ -19,6 +19,7 @@
                 zoom: 12, // このくらいならぼんやり表示される
                 style: {
                     version: 8,
+                    glyphs: '../fonts/{fontstack}/{range}.pbf',
                     sources: {
                         osm: {
                             type: 'raster',
@@ -141,6 +142,31 @@
                                     14,
                                     1,
                                 ]
+                            },
+                        },
+                        {
+                            id: 'school-label-layer',
+                            source: 'school',
+                            type: 'symbol',
+                            minzoom: 12,
+                            layout: {
+                                'text-field': ['get', 'P29_004'],
+                                'text-font': ['Noto Sans CJK JP Bold'],
+                                'text-offset': [0, 0.5],
+                                'text-anchor': 'top',
+                                'text-size': [
+                                    'interpolate',
+                                    ['linear'],
+                                    ['zoom'],
+                                    10,
+                                    8,
+                                    14,
+                                    14,
+                                ],
+                            },
+                            paint: {
+                                'text-halo-width': 1,
+                                'text-halo-color': '#fff',
                             },
                         },
                     ],
