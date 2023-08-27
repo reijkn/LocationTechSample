@@ -13,25 +13,26 @@
         <!-- この div に地図が表示される -->
         <div id="map" style="height: 80vh"></div>
         <script>
+            const rastertileUrl = `${location.href.replace('/index.html', '')}/tiles/{z}/{x}/{y}.png`;
             const map = new maplibregl.Map({
                 container: 'map',
-                center: [137.1, 36.5],
-                zoom: 4,
+                center: [136.0881, 35.2406],
+                zoom: 0,
                 style: {
                     version: 8,
                     sources: {
-                        osm: {
+                        naturalearth: {
                             type: 'raster',
-                            tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png',],
+                            tiles: [rastertileUrl],
                             tileSize: 256, // タイルの解像度, デフォルトは512
-                            maxzoom: 18,
-                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                            maxzoom: 5,
+                            attribution: '<a href="https://www.naturalearthdata.com/">Natural Earth</a>',
                         },
                     },
                     layers: [
                         {
-                            id: 'osm-layer',
-                            source: 'osm',
+                            id: 'naturalearth-layer',
+                            source: 'naturalearth',
                             type: 'raster',
                         },
                     ],
