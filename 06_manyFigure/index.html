@@ -51,6 +51,10 @@
             };
             map.addLayer(baseLayers['OpenStreetMap']); // OSMを初期表示
            
+            // 切り替えコントロール
+            const layersControl = L.control
+                .layers(baseLayers, [], { collapsed: false})
+                .addTo(map);
         </script>
     </body>
 </html>
