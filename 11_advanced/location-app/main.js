@@ -20,12 +20,27 @@ const cmap = new maplibregl.Map({
         attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contirbutors',
       },
+      hazard_flood: {
+        type: 'raster',
+        tiles: ['https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin_data/{z}/{x}/{y}.png'],
+        minzoom: 2,
+        maxzoom: 17,
+        tileSize: 256,
+        attribution:
+        '&copy; <a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html">ハザードマップポータルサイト</a>',
+      },
     },
     layers: [
       {
         id: 'osm-layer',
         source: 'osm',
         type: 'raster',
+      },
+      {
+        id: 'flood-layer',
+        source: 'hazard_flood',
+        type: 'raster',
+        paint: {'raster-opacity': 0.7},
       },
     ]
   }
