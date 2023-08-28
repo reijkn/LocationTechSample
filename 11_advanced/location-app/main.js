@@ -1,6 +1,8 @@
 // import './style.css'
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import OpacityControl from 'maplibre-gl-opacity';
+import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
 
 const cmap = new maplibregl.Map({
   container: 'map',
@@ -128,7 +130,22 @@ const cmap = new maplibregl.Map({
         paint: { 'raster-opacity': 0.7 },
       },
       // 重ねるハザードマップここまで
-    ]
-  }
+    ],
 
-})
+  },
+});
+
+// イベント登録
+cmap.on('load', () => {
+  const opacity = new OpacityControl({
+    baseLayers: {
+      'flood-layer': '洪水',
+      'hazard_hightide-layer': '高潮',
+      'hazard_tsunami-layer': '津波',
+      'hazard_doseki-layer': 'どせきりゅ',
+      'hazard_kyukeisha-layer': '急傾斜',
+      'hazard_jisuberi-layer': '地すべり',
+    },
+  });
+  cmap.addControl(opacity, 'top-left');
+});
